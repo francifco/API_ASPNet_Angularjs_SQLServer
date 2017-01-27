@@ -22,11 +22,8 @@ namespace StadisticJCE.Controllers
         {
             using (JCEEntities db = new JCEEntities())
             {
-                var objectProfession = from p in db.TBM_Profesion
-                                       orderby p.profesion ascending
-                                       select p;
-
-                return Json(objectProfession, JsonRequestBehavior.AllowGet);
+                db.Configuration.LazyLoadingEnabled = false;
+                return Json(db.TBM_Profesion.ToList(), JsonRequestBehavior.AllowGet);
             }
         }
     }

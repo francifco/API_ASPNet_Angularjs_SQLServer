@@ -110,21 +110,22 @@
       <DependentUpon>JCEModel.edmx</DependentUpon>
       <LastGenOutput>JCEModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CitizenController.cs" />
     <Compile Include="Controllers\ProfessionController.cs" />
-    <Compile Include="Controllers\SexController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
-    <Compile Include="Entities\Province.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Entities\Citizen.cs" />
     <Compile Include="Helpers\CitizenParser.cs" />
     <Compile Include="Controllers\ProvinceController.cs" />
+    <Compile Include="Helpers\CitizenValidator.cs" />
     <Compile Include="Models\JCEModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -152,9 +153,6 @@
     <Compile Include="Models\TBM_Provincia.cs">
       <DependentUpon>JCEModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TBM_Sexo.cs">
-      <DependentUpon>JCEModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,9 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Profession\" />
-    <Folder Include="Views\Sex\" />
-    <Folder Include="Views\Status\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

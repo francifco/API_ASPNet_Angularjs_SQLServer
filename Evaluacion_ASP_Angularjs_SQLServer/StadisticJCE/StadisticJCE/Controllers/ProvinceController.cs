@@ -21,11 +21,9 @@ namespace StadisticJCE.Controllers
         {
             using (JCEEntities db = new JCEEntities())
             {
-                var objectProvince = from p in db.TBM_Provincia
-                                     orderby p.provincia ascending
-                                     select p;
+                db.Configuration.LazyLoadingEnabled = false;
 
-                return Json(objectProvince, JsonRequestBehavior.AllowGet);
+                return Json(db.TBM_Provincia.ToList(), JsonRequestBehavior.AllowGet);
             }
         }
     }

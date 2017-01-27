@@ -29,6 +29,5 @@ namespace StadisticJCE.Models
         public virtual DbSet<TBM_Estatus> TBM_Estatus { get; set; }
         public virtual DbSet<TBM_Profesion> TBM_Profesion { get; set; }
         public virtual DbSet<TBM_Provincia> TBM_Provincia { get; set; }
-        public virtual DbSet<TBM_Sexo> TBM_Sexo { get; set; }
     }
 }

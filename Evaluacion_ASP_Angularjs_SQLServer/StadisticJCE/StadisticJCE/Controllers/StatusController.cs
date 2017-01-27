@@ -20,11 +20,8 @@ namespace StadisticJCE.Controllers
         {
             using (JCEEntities db = new JCEEntities())
             {
-                var objectStatus = from p in db.TBM_Estatus
-                                   orderby p.Estatus ascending
-                                   select p;
-
-                return Json(objectStatus, JsonRequestBehavior.AllowGet);
+                db.Configuration.LazyLoadingEnabled = false;
+                return Json(db.TBM_Estatus.ToList(), JsonRequestBehavior.AllowGet);
             }
         }
     }

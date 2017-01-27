@@ -15,8 +15,11 @@ namespace StadisticJCE
 
             routes.MapRoute(
                 name: "Citizen",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Citizen", action = "fetchCitizens" }
+                url: "{controller}/{action}/{pageNumber}/{pageSize}",
+                defaults: new { controller = "Citizen", action = "fetchCitizens",
+                    pageNumber = UrlParameter.Optional,
+                    pageSize = UrlParameter.Optional
+                }
             );
 
             routes.MapRoute(              
@@ -26,15 +29,9 @@ namespace StadisticJCE
                 );
 
             routes.MapRoute(            
-                name: "Profession",            
+                name: "Province",            
                 url: "{controller}/{action}",            
                 defaults: new { controller = "Province", action = "getAllProvinces" }
-             );
-
-            routes.MapRoute(
-                name: "Profession",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Sex", action = "getAllSex" }
              );
 
             routes.MapRoute(
