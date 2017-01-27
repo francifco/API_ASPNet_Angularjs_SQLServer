@@ -100,13 +100,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Models\JCEModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JCEModel.edmx</DependentUpon>
+      <LastGenOutput>JCEModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\JCEModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JCEModel.edmx</DependentUpon>
+      <LastGenOutput>JCEModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CitizenController.cs" />
     <Compile Include="Controllers\ProfessionController.cs" />
-    <Compile Include="Controllers\GenderController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -114,10 +125,45 @@
     <Compile Include="Entities\Citizen.cs" />
     <Compile Include="Helpers\CitizenParser.cs" />
     <Compile Include="Controllers\ProvinceController.cs" />
+    <Compile Include="Helpers\CitizenValidator.cs" />
+    <Compile Include="Models\JCEModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JCEModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JCEModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JCEModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JCEModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JCEModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBM_Ciudadanos.cs">
+      <DependentUpon>JCEModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBM_Estatus.cs">
+      <DependentUpon>JCEModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBM_Profesion.cs">
+      <DependentUpon>JCEModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBM_Provincia.cs">
+      <DependentUpon>JCEModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <EntityDeploy Include="Models\JCEModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JCEModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\JCEModel.edmx.diagram">
+      <DependentUpon>JCEModel.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -127,10 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Profession\" />
-    <Folder Include="Views\Sex\" />
-    <Folder Include="Views\Status\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

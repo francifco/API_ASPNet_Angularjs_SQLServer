@@ -58,7 +58,7 @@ namespace StadisticJCE.Controllers
 
             for (int i = 0; i < citizens.Count; i++)
             {
-                if (citizens[i].idGender == 2)
+                if (citizens[i].gender.Equals("M"))
                 {
                     male++;
                 }
@@ -100,9 +100,9 @@ namespace StadisticJCE.Controllers
         public string addCitizen(Citizen citizenParams)
         {
             
-            if (citizenParams != null)
+            if (!CitizenValidator.somePropertiesNull(citizenParams))
             {
-                if (validateIdenty(citizenParams.identify))
+                if (CitizenValidator.validateIdenty(citizenParams.identify))
                 {
                     if (notExist(citizenParams.identify))
                     {
@@ -180,40 +180,7 @@ namespace StadisticJCE.Controllers
 
 
 
-        /// <summary>
-        /// Valida si un cedula esta correcta o no.
-        /// </summary>
-        /// <param name="identy">string: numero de cedula</param>
-        /// <returns>true: si es valida, false: si no es correcta.</returns>
-        private bool validateIdenty(string identy)
-        {
-            int sum = 0;
-
-            if (identy == null || identy.Length != 11)
-            {
-                return false;
-            }
-            else
-            {
-
-                for (int i = 0; i < 10; i++)
-                {
-                    int mul = (identy[i] - '0') * (i % 2 + 1);
-                    {
-                        while (mul > 0)
-                        {
-                            sum += mul % 10;
-                            mul /= 10;
-                        }
-                    }
-                }
-
-                int div = (sum + 9) / 10 * 10;
-                int digit = div - sum;
-
-                return (digit == identy[10] - '0');
-            }
-        }
+        
 
 
     }

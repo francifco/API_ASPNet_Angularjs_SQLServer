@@ -29,11 +29,10 @@ namespace StadisticJCE.Helpers
 
                 citizen.id = list[i].idCiudadano;
                 citizen.name = list[i].nombres;
-                citizen.lastName1 = list[i].apellido1;
-                citizen.lastName2 = list[i].appellido2;
+                citizen.lastName = list[i].apellidos;
                 citizen.idProfession = list[i].idProfesion;
                 citizen.idProvince = list[i].idProvincia;
-                citizen.idGender = list[i].idSexo;
+                citizen.gender = list[i].sexo;
                 citizen.identify = list[i].cedula;
                 citizen.idStatus = list[i].idEstatus;
                 citizen.sector = list[i].sector;
@@ -51,15 +50,15 @@ namespace StadisticJCE.Helpers
 
             mCitizen.cedula = citizenParams.identify;
             mCitizen.nombres = citizenParams.name;
-            mCitizen.apellido1 = citizenParams.lastName1;
-            mCitizen.apellido1 = citizenParams.lastName2;
+            mCitizen.apellidos = citizenParams.lastName;
             mCitizen.calle = citizenParams.street;
             mCitizen.fechaNac = Convert.ToDateTime(citizenParams.birthDate);
             mCitizen.idEstatus = citizenParams.idStatus;
             mCitizen.idProvincia = citizenParams.idProvince;
             mCitizen.idProfesion = citizenParams.idProfession;
-            mCitizen.idSexo = citizenParams.idGender;
-            mCitizen.numero = Convert.ToInt32(citizenParams.houseNumber);
+            mCitizen.sexo = citizenParams.gender;
+            mCitizen.numero = citizenParams.houseNumber;
+            mCitizen.sector = citizenParams.sector;
 
             return mCitizen;
 
