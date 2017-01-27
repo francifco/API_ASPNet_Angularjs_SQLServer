@@ -18,11 +18,10 @@ namespace StadisticJCE.Models
         public int idProvincia { get; set; }
         public int idProfesion { get; set; }
         public int idEstatus { get; set; }
-        public int idSexo { get; set; }
+        public string sexo { get; set; }
         public string cedula { get; set; }
         public string nombres { get; set; }
-        public string apellido1 { get; set; }
-        public string appellido2 { get; set; }
+        public string apellidos { get; set; }
         public System.DateTime fechaNac { get; set; }
         public string calle { get; set; }
         public decimal numero { get; set; }
@@ -32,6 +31,5 @@ namespace StadisticJCE.Models
         public virtual TBM_Estatus TBM_Estatus { get; set; }
         public virtual TBM_Provincia TBM_Provincia { get; set; }
         public virtual TBM_Profesion TBM_Profesion { get; set; }
-        public virtual TBM_Sexo TBM_Sexo { get; set; }
     }
 }

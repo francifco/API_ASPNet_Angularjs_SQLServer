@@ -13,11 +13,10 @@
           <Property Name="idProvincia" Type="int" Nullable="false" />
           <Property Name="idProfesion" Type="int" Nullable="false" />
           <Property Name="idEstatus" Type="int" Nullable="false" />
-          <Property Name="idSexo" Type="int" Nullable="false" />
+          <Property Name="sexo" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="cedula" Type="nvarchar" MaxLength="11" Nullable="false" />
           <Property Name="nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="apellido1" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="appellido2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="fechaNac" Type="date" Nullable="false" />
           <Property Name="calle" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
@@ -45,14 +44,7 @@
           <Property Name="idProvincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="provincia" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="TBM_Sexo">
-          <Key>
-            <PropertyRef Name="idSexo" />
-          </Key>
-          <Property Name="idSexo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sexo" Type="nvarchar" MaxLength="20" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__TBM_Ciuda__idEst__1B0907CE">
+        <Association Name="FK__TBM_Ciuda__idEst__1920BF5C">
           <End Role="TBM_Estatus" Type="Self.TBM_Estatus" Multiplicity="1" />
           <End Role="TBM_Ciudadanos" Type="Self.TBM_Ciudadanos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -64,7 +56,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBM_Ciuda__idPro__1920BF5C">
+        <Association Name="FK__TBM_Ciuda__idPro__173876EA">
           <End Role="TBM_Provincia" Type="Self.TBM_Provincia" Multiplicity="1" />
           <End Role="TBM_Ciudadanos" Type="Self.TBM_Ciudadanos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -76,7 +68,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBM_Ciuda__idPro__1A14E395">
+        <Association Name="FK__TBM_Ciuda__idPro__182C9B23">
           <End Role="TBM_Profesion" Type="Self.TBM_Profesion" Multiplicity="1" />
           <End Role="TBM_Ciudadanos" Type="Self.TBM_Ciudadanos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -88,38 +80,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBM_Ciuda__idSex__1BFD2C07">
-          <End Role="TBM_Sexo" Type="Self.TBM_Sexo" Multiplicity="1" />
-          <End Role="TBM_Ciudadanos" Type="Self.TBM_Ciudadanos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBM_Sexo">
-              <PropertyRef Name="idSexo" />
-            </Principal>
-            <Dependent Role="TBM_Ciudadanos">
-              <PropertyRef Name="idSexo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="JCEModelStoreContainer">
           <EntitySet Name="TBM_Ciudadanos" EntityType="Self.TBM_Ciudadanos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBM_Estatus" EntityType="Self.TBM_Estatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBM_Profesion" EntityType="Self.TBM_Profesion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBM_Provincia" EntityType="Self.TBM_Provincia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBM_Sexo" EntityType="Self.TBM_Sexo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__TBM_Ciuda__idEst__1B0907CE" Association="Self.FK__TBM_Ciuda__idEst__1B0907CE">
+          <AssociationSet Name="FK__TBM_Ciuda__idEst__1920BF5C" Association="Self.FK__TBM_Ciuda__idEst__1920BF5C">
             <End Role="TBM_Estatus" EntitySet="TBM_Estatus" />
             <End Role="TBM_Ciudadanos" EntitySet="TBM_Ciudadanos" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBM_Ciuda__idPro__1920BF5C" Association="Self.FK__TBM_Ciuda__idPro__1920BF5C">
+          <AssociationSet Name="FK__TBM_Ciuda__idPro__173876EA" Association="Self.FK__TBM_Ciuda__idPro__173876EA">
             <End Role="TBM_Provincia" EntitySet="TBM_Provincia" />
             <End Role="TBM_Ciudadanos" EntitySet="TBM_Ciudadanos" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBM_Ciuda__idPro__1A14E395" Association="Self.FK__TBM_Ciuda__idPro__1A14E395">
+          <AssociationSet Name="FK__TBM_Ciuda__idPro__182C9B23" Association="Self.FK__TBM_Ciuda__idPro__182C9B23">
             <End Role="TBM_Profesion" EntitySet="TBM_Profesion" />
-            <End Role="TBM_Ciudadanos" EntitySet="TBM_Ciudadanos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TBM_Ciuda__idSex__1BFD2C07" Association="Self.FK__TBM_Ciuda__idSex__1BFD2C07">
-            <End Role="TBM_Sexo" EntitySet="TBM_Sexo" />
             <End Role="TBM_Ciudadanos" EntitySet="TBM_Ciudadanos" />
           </AssociationSet>
         </EntityContainer>
@@ -136,20 +111,18 @@
           <Property Name="idProvincia" Type="Int32" Nullable="false" />
           <Property Name="idProfesion" Type="Int32" Nullable="false" />
           <Property Name="idEstatus" Type="Int32" Nullable="false" />
-          <Property Name="idSexo" Type="Int32" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="cedula" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="appellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fechaNac" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="numero" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="sector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="TBM_Estatus" Relationship="Self.FK__TBM_Ciuda__idEst__1B0907CE" FromRole="TBM_Ciudadanos" ToRole="TBM_Estatus" />
-          <NavigationProperty Name="TBM_Provincia" Relationship="Self.FK__TBM_Ciuda__idPro__1920BF5C" FromRole="TBM_Ciudadanos" ToRole="TBM_Provincia" />
-          <NavigationProperty Name="TBM_Profesion" Relationship="Self.FK__TBM_Ciuda__idPro__1A14E395" FromRole="TBM_Ciudadanos" ToRole="TBM_Profesion" />
-          <NavigationProperty Name="TBM_Sexo" Relationship="Self.FK__TBM_Ciuda__idSex__1BFD2C07" FromRole="TBM_Ciudadanos" ToRole="TBM_Sexo" />
+          <NavigationProperty Name="TBM_Estatus" Relationship="Self.FK__TBM_Ciuda__idEst__1920BF5C" FromRole="TBM_Ciudadanos" ToRole="TBM_Estatus" />
+          <NavigationProperty Name="TBM_Provincia" Relationship="Self.FK__TBM_Ciuda__idPro__173876EA" FromRole="TBM_Ciudadanos" ToRole="TBM_Provincia" />
+          <NavigationProperty Name="TBM_Profesion" Relationship="Self.FK__TBM_Ciuda__idPro__182C9B23" FromRole="TBM_Ciudadanos" ToRole="TBM_Profesion" />
         </EntityType>
         <EntityType Name="TBM_Estatus">
           <Key>
@@ -157,7 +130,7 @@
           </Key>
           <Property Name="idEstatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TBM_Ciudadanos" Relationship="Self.FK__TBM_Ciuda__idEst__1B0907CE" FromRole="TBM_Estatus" ToRole="TBM_Ciudadanos" />
+          <NavigationProperty Name="TBM_Ciudadanos" Relationship="Self.FK__TBM_Ciuda__idEst__1920BF5C" FromRole="TBM_Estatus" ToRole="TBM_Ciudadanos" />
         </EntityType>
         <EntityType Name="TBM_Profesion">
           <Key>
@@ -165,7 +138,7 @@
           </Key>
           <Property Name="idProfesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="profesion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TBM_Ciudadanos" Relationship="Self.FK__TBM_Ciuda__idPro__1A14E395" FromRole="TBM_Profesion" ToRole="TBM_Ciudadanos" />
+          <NavigationProperty Name="TBM_Ciudadanos" Relationship="Self.FK__TBM_Ciuda__idPro__182C9B23" FromRole="TBM_Profesion" ToRole="TBM_Ciudadanos" />
         </EntityType>
         <EntityType Name="TBM_Provincia">
           <Key>
@@ -173,17 +146,9 @@
           </Key>
           <Property Name="idProvincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TBM_Ciudadanos" Relationship="Self.FK__TBM_Ciuda__idPro__1920BF5C" FromRole="TBM_Provincia" ToRole="TBM_Ciudadanos" />
+          <NavigationProperty Name="TBM_Ciudadanos" Relationship="Self.FK__TBM_Ciuda__idPro__173876EA" FromRole="TBM_Provincia" ToRole="TBM_Ciudadanos" />
         </EntityType>
-        <EntityType Name="TBM_Sexo">
-          <Key>
-            <PropertyRef Name="idSexo" />
-          </Key>
-          <Property Name="idSexo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sexo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TBM_Ciudadanos" Relationship="Self.FK__TBM_Ciuda__idSex__1BFD2C07" FromRole="TBM_Sexo" ToRole="TBM_Ciudadanos" />
-        </EntityType>
-        <Association Name="FK__TBM_Ciuda__idEst__1B0907CE">
+        <Association Name="FK__TBM_Ciuda__idEst__1920BF5C">
           <End Role="TBM_Estatus" Type="Self.TBM_Estatus" Multiplicity="1" />
           <End Role="TBM_Ciudadanos" Type="Self.TBM_Ciudadanos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -195,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBM_Ciuda__idPro__1920BF5C">
+        <Association Name="FK__TBM_Ciuda__idPro__173876EA">
           <End Role="TBM_Provincia" Type="Self.TBM_Provincia" Multiplicity="1" />
           <End Role="TBM_Ciudadanos" Type="Self.TBM_Ciudadanos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -207,7 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBM_Ciuda__idPro__1A14E395">
+        <Association Name="FK__TBM_Ciuda__idPro__182C9B23">
           <End Role="TBM_Profesion" Type="Self.TBM_Profesion" Multiplicity="1" />
           <End Role="TBM_Ciudadanos" Type="Self.TBM_Ciudadanos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -219,38 +184,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBM_Ciuda__idSex__1BFD2C07">
-          <End Role="TBM_Sexo" Type="Self.TBM_Sexo" Multiplicity="1" />
-          <End Role="TBM_Ciudadanos" Type="Self.TBM_Ciudadanos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBM_Sexo">
-              <PropertyRef Name="idSexo" />
-            </Principal>
-            <Dependent Role="TBM_Ciudadanos">
-              <PropertyRef Name="idSexo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="JCEEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TBM_Ciudadanos" EntityType="Self.TBM_Ciudadanos" />
           <EntitySet Name="TBM_Estatus" EntityType="Self.TBM_Estatus" />
           <EntitySet Name="TBM_Profesion" EntityType="Self.TBM_Profesion" />
           <EntitySet Name="TBM_Provincia" EntityType="Self.TBM_Provincia" />
-          <EntitySet Name="TBM_Sexo" EntityType="Self.TBM_Sexo" />
-          <AssociationSet Name="FK__TBM_Ciuda__idEst__1B0907CE" Association="Self.FK__TBM_Ciuda__idEst__1B0907CE">
+          <AssociationSet Name="FK__TBM_Ciuda__idEst__1920BF5C" Association="Self.FK__TBM_Ciuda__idEst__1920BF5C">
             <End Role="TBM_Estatus" EntitySet="TBM_Estatus" />
             <End Role="TBM_Ciudadanos" EntitySet="TBM_Ciudadanos" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBM_Ciuda__idPro__1920BF5C" Association="Self.FK__TBM_Ciuda__idPro__1920BF5C">
+          <AssociationSet Name="FK__TBM_Ciuda__idPro__173876EA" Association="Self.FK__TBM_Ciuda__idPro__173876EA">
             <End Role="TBM_Provincia" EntitySet="TBM_Provincia" />
             <End Role="TBM_Ciudadanos" EntitySet="TBM_Ciudadanos" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBM_Ciuda__idPro__1A14E395" Association="Self.FK__TBM_Ciuda__idPro__1A14E395">
+          <AssociationSet Name="FK__TBM_Ciuda__idPro__182C9B23" Association="Self.FK__TBM_Ciuda__idPro__182C9B23">
             <End Role="TBM_Profesion" EntitySet="TBM_Profesion" />
-            <End Role="TBM_Ciudadanos" EntitySet="TBM_Ciudadanos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TBM_Ciuda__idSex__1BFD2C07" Association="Self.FK__TBM_Ciuda__idSex__1BFD2C07">
-            <End Role="TBM_Sexo" EntitySet="TBM_Sexo" />
             <End Role="TBM_Ciudadanos" EntitySet="TBM_Ciudadanos" />
           </AssociationSet>
         </EntityContainer>
@@ -267,11 +215,10 @@
                 <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
                 <ScalarProperty Name="idProfesion" ColumnName="idProfesion" />
                 <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
-                <ScalarProperty Name="idSexo" ColumnName="idSexo" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombres" ColumnName="nombres" />
-                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
-                <ScalarProperty Name="appellido2" ColumnName="appellido2" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
                 <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
                 <ScalarProperty Name="calle" ColumnName="calle" />
                 <ScalarProperty Name="numero" ColumnName="numero" />
@@ -301,14 +248,6 @@
               <MappingFragment StoreEntitySet="TBM_Provincia">
                 <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
                 <ScalarProperty Name="provincia" ColumnName="provincia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBM_Sexo">
-            <EntityTypeMapping TypeName="JCEModel.TBM_Sexo">
-              <MappingFragment StoreEntitySet="TBM_Sexo">
-                <ScalarProperty Name="idSexo" ColumnName="idSexo" />
-                <ScalarProperty Name="sexo" ColumnName="sexo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

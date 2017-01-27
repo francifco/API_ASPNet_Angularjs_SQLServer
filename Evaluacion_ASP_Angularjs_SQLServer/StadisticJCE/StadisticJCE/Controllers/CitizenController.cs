@@ -7,6 +7,7 @@ using StadisticJCE.Models;
 using StadisticJCE.Entities;
 using StadisticJCE.Helpers;
 
+
 namespace StadisticJCE.Controllers
 {
     /// <summary>
@@ -28,14 +29,14 @@ namespace StadisticJCE.Controllers
             using (JCEEntities db = new JCEEntities())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-
+/*
                 var objectCitizens = from citizen in db.TBM_Ciudadanos
                                      select citizen;
 
 
-                List<TBM_Ciudadanos> list = objectCitizens.OrderBy(s => s.nombres)
+               /* List<TBM_Ciudadanos> list = objectCitizens.OrderBy(s => s.nombres)
                     .Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
-
+*/
                 List<Citizen> listCitizen = CitizenParser.toListCitizen(db.TBM_Ciudadanos.ToList());
 
                 return Json(listCitizen, JsonRequestBehavior.AllowGet);
@@ -57,7 +58,7 @@ namespace StadisticJCE.Controllers
 
             for (int i = 0; i < citizens.Count; i++)
             {
-                if (citizens[i].idSex == 2)
+                if (citizens[i].idGender == 2)
                 {
                     male++;
                 }
@@ -93,33 +94,44 @@ namespace StadisticJCE.Controllers
         /// <summary>
         /// Agrega a un ciudadano en la BD.
         /// </summary>
-        /// <param name="citizen">int: cedula del ciudadano</param>
+        /// <param name="citizenParams">Citizen: objeto representante del ciudadano.</param>
         /// <returns>JsonObject: Si fue agregado con exito.</returns>
         [HttpPost]
-        public string addCitizen(TBM_Ciudadanos citizen)
+        public string addCitizen(Citizen citizenParams)
         {
-            if (validateIdenty(citizen.cedula))
+            
+            if (citizenParams != null)
             {
-                using (JCEEntities db = new JCEEntities())
+                if (validateIdenty(citizenParams.identify))
                 {
-                    if (notExist(citizen.cedula))
+                    if (notExist(citizenParams.identify))
                     {
-                        TBM_Ciudadanos objectCitizen = new TBM_Ciudadanos();
-                        db.TBM_Ciudadanos.Add(citizen);
-                        db.SaveChanges();
-                        return "El ciudadano fue agregado exitosamente.";
+                        /// se parcea por el tipo de datos de la fecha de nacimiento y seperacion
+                        /// del full lastname a apellido1 y apellido2.
+                        /// cambio de tipologia hacia los foreingkey (string) a (int)
+                        TBM_Ciudadanos mCitizen = CitizenParser.toModelCitizen(citizenParams);
+
+                        using (JCEEntities db = new JCEEntities())
+                        {
+                            TBM_Ciudadanos _citizen = new TBM_Ciudadanos();
+                            db.TBM_Ciudadanos.Add(mCitizen);
+                            db.SaveChanges();
+                            return "El ciudadano fue agregado exitosamente.";
+                        }
                     }
                     else
                     {
-                        return "El ciudadnos no fue gragado. Ya Existe en la base de datos.";
+                        return "El ciudadano no fue gragado. Ya Existe en la base de datos.";
                     }
+                    
+                }
+                else
+                {
+                    return "Cedula invalida. Verifique el numero de cedula.";
                 }
             }
-            else
-            {
-                return "Cedula invalida. Verifique el numero de cedula.";
-            }
-
+            
+            return "No se permiten campos vacios."; 
         }
 
 
